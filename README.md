@@ -12,19 +12,27 @@ Weak part: can not implement liner running time in smallest last ordering part, 
 (2) Algorithm Descriptions:
 Part 1:
 Using Sweep method to find pairs of vertices, the step is first sort the all the vertices based on its X coordinate from small to large, than for each of the vertex from sorted order, only compare the X coordinate range from x to x+r. If next vertex is in the range, then calculate the distance between them to see if d<=r, if so, we find a pair. The time complexity is O(NlogN) for sort and O(rN^2) for searching.
+
 Estimate r:
+
 For Square:r= √𝐴𝑣𝑔𝐷𝑒𝑔𝑟𝑒𝑒/𝑁𝜋2
+
 For Disk: r= √𝐴𝑣𝑔𝐷𝑒𝑔𝑟𝑒𝑒/𝑁2
+
 Perform uniform distribution: For square, we only need to generate random number from 0 to 1 to give the value to location X and Y. But for the Disk, first generate random number theata from 0 to 2𝜋, andanother number r from 0 to 1, so x = r*sin(theta), and y = r*cos(theta).
+
 Part 2:
 Walkthrough of the smallest-last coloring algorithm(Step, Data and Flow chart):
 For unit Square, N = 20 and r = 0.4, Plot 1 is sequential coloring plot, Plot 2 is color set size distribution.
+
 Step:
+
 1. Find the vertex with the min Degree using the Degree List.
 Degree = [2, 3, 7, 8, 8, 8, 5, 11, 11, 9, 9, 8, 11, 8, 8, 5, 4, 4, 4, 3]
 Degree_List = [[], [], [0], [1, 19], [16, 17, 18], [6, 15], [], [2], [3, 4, 5, 11, 13, 14], [9, 10], [], [7, 8, 12]] 
 
 2. Find the vertices linked with this vertex using the adjacent list, for each linked vertex in Degree List, Degree minus one and update the Degree List. As how to find its location in Degree List, using another degree list in part 1(from index 0 to N represents the vertex number and the value means the Degree, For example Degree[5] = 10 means the vertex 5 has degree 10). So, for each vertex, we can know its degree, and in degree list we can know its location.
+
 Smallest last ordering List =
 [[11], [9, 11], [8, 9, 11], [7, 8, 9, 11], [4, 7, 8, 9, 11], [12, 4, 7, 8, 9, 11], [2, 4, 7, 8, 9, 11], [5, 2, 4, 7, 8, 9, 12], [13, 2, 7, 8, 9, 11, 12], [3, 4, 5, 7, 8, 12], [10, 3, 5, 7, 12], [14, 7, 8, 10, 12], [15, 8, 9, 11, 13], [18, 10, 14], [17, 10, 14, 18], [16, 10, 14, 17, 18], [6, 3, 10, 14], [19, 12, 13, 15], [1, 3, 6], [0, 1, 6]]
 
